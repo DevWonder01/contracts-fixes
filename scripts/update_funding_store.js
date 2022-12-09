@@ -7,7 +7,7 @@ async function main() {
   const network = hre.network.name;
   console.log('Network', network);
 
-  const provider = ethers.provider;
+  const provider = ethers.jprovider;
 
   const [signer, _oracle] = await ethers.getSigners();
 

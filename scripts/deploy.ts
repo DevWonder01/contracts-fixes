@@ -18,14 +18,22 @@ async function main() {
   const oracle = {address: await _oracle.getAddress()};
 
   // CAP
-  const cap = {address: '0x031d35296154279dc1984dcd93e392b1f946737b'};
+  // const cap = {address: '0x031d35296154279dc1984dcd93e392b1f946737b'};
 
   // USDC
-  const usdc = {address: '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'};
+  // const usdc = {address: '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8'};
 
   // WBTC
-  const wbtc = {address: '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f'};
+  // const wbtc = {address: '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f'};
 
+  // FTM Token
+  const cap = {address : '0x10a768280bD18bC5C1221e2E7020f4032aE1BAD7'}
+  
+  // USDC
+  const usdc = {address: '0x75Aa079167ef4E4dEcf5F4E39d8777062fD4504b'};
+
+  // WBTC
+  const wbtc = {address: '0x04fC1C85Ff7a6e3DB77f5Cacc79f4C5E880955E7'};
 
   // CONTRACT DEPLOYMENT //
 
