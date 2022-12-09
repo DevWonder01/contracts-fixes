@@ -22,10 +22,12 @@ import { removeConsoleLog } from "hardhat-preprocessor"
 
 // const accounts: [process.env.ARBITRUM_PKEY, process.env.ARBITRUM_ORACLE_PKEY]
 
-const accounts = {
-  mnemonic: process.env.MNEMONIC || "test test test test test test test test test test test junk",
-  // accountsBalance: "990000000000000000000",
-}
+// const accounts = {
+//   mnemonic: process.env.MNEMONIC || "test test test test test test test test test test test junk",
+//   // accountsBalance: "990000000000000000000",
+// }
+
+const accounts = [""]
 
 const config: HardhatUserConfig = {
   abiExporter: {

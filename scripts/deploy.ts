@@ -3,6 +3,9 @@ const { ethers } = require('hardhat');
 const { ADDRESS_ZERO, BPS_DIVIDER, toUnits } = require('./lib/utils.js');
 const { MARKETS, chainlinkFeeds } = require('./lib/markets.js');
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+
 async function main() {
 
   const network = hre.network.name;
@@ -12,10 +15,12 @@ async function main() {
   const [signer, _oracle] = await ethers.getSigners();
 
   console.log('Signer', await signer.getAddress());
-  console.log('Oracle', await _oracle.getAddress());
+  // console.log('Oracle', await _oracle.getAddress());
 
   // Oracle
-  const oracle = {address: await _oracle.getAddress()};
+  // const oracle = {address: await _oracle.getAddress()};
+  const oracle = {address: await signer.getAddress()};
+
 
   // CAP
   // const cap = {address: '0x031d35296154279dc1984dcd93e392b1f946737b'};
@@ -44,13 +49,15 @@ async function main() {
   const governable = await Governable.deploy();
   await governable.deployed();
   console.log(`Governable deployed to ${governable.address}.`);
+  await sleep(5000);
+
 
   // RoleStore
   const RoleStore = await ethers.getContractFactory("RoleStore");
   const roleStore = await RoleStore.deploy();
   await roleStore.deployed();
   console.log(`RoleStore deployed to ${roleStore.address}.`);
-
+  await sleep(5000);
   console.log('--------');
   
   // DataStore
@@ -58,7 +65,7 @@ async function main() {
   const dataStore = await DataStore.deploy();
   await dataStore.deployed();
   console.log(`DataStore deployed to ${dataStore.address}.`);
-
+  await sleep(5000);
   console.log('--------');
 
   // Chainlink
@@ -66,7 +73,7 @@ async function main() {
   const chainlink = await Chainlink.deploy();
   await chainlink.deployed();
   console.log(`Chainlink deployed to ${chainlink.address}.`);
-
+  await sleep(5000);
   console.log('--------');
 
   // AssetStore
@@ -79,60 +86,70 @@ async function main() {
   const FundingStore = await ethers.getContractFactory("FundingStore");
   const fundingStore = await FundingStore.deploy(roleStore.address);
   await fundingStore.deployed();
+  await sleep(5000);
   console.log(`FundingStore deployed to ${fundingStore.address}.`);
 
   // FundStore
   const FundStore = await ethers.getContractFactory("FundStore");
   const fundStore = await FundStore.deploy(roleStore.address);
   await fundStore.deployed();
+  await sleep(5000);
   console.log(`FundStore deployed to ${fundStore.address}.`);
 
   // MarketStore
   const MarketStore = await ethers.getContractFactory("MarketStore");
   const marketStore = await MarketStore.deploy(roleStore.address);
   await marketStore.deployed();
+  await sleep(5000);
   console.log(`MarketStore deployed to ${marketStore.address}.`);
 
   // OrderStore
   const OrderStore = await ethers.getContractFactory("OrderStore");
   const orderStore = await OrderStore.deploy(roleStore.address);
   await orderStore.deployed();
+  await sleep(5000);
   console.log(`OrderStore deployed to ${orderStore.address}.`);
 
   // PoolStore
   const PoolStore = await ethers.getContractFactory("PoolStore");
   const poolStore = await PoolStore.deploy(roleStore.address);
   await poolStore.deployed();
+  await sleep(5000);
   console.log(`PoolStore deployed to ${poolStore.address}.`);
 
   // PositionStore
   const PositionStore = await ethers.getContractFactory("PositionStore");
   const positionStore = await PositionStore.deploy(roleStore.address);
   await positionStore.deployed();
+  await sleep(5000);
   console.log(`PositionStore deployed to ${positionStore.address}.`);
 
   // RebateStore
   const RebateStore = await ethers.getContractFactory("RebateStore");
   const rebateStore = await RebateStore.deploy(roleStore.address, dataStore.address);
   await rebateStore.deployed();
+  await sleep(5000);
   console.log(`RebateStore deployed to ${rebateStore.address}.`);
 
   // ReferralStore
   const ReferralStore = await ethers.getContractFactory("ReferralStore");
   const referralStore = await ReferralStore.deploy(roleStore.address);
   await referralStore.deployed();
+  await sleep(5000);
   console.log(`ReferralStore deployed to ${referralStore.address}.`);
 
   // RiskStore
   const RiskStore = await ethers.getContractFactory("RiskStore");
   const riskStore = await RiskStore.deploy(roleStore.address, dataStore.address);
   await riskStore.deployed();
+  await sleep(5000);
   console.log(`RiskStore deployed to ${riskStore.address}.`);
 
   // StakingStore
   const StakingStore = await ethers.getContractFactory("StakingStore");
   const stakingStore = await StakingStore.deploy(roleStore.address);
   await stakingStore.deployed();
+  await sleep(5000);
   console.log(`StakingStore deployed to ${stakingStore.address}.`);
 
   // Handlers
@@ -141,36 +158,42 @@ async function main() {
   const Funding = await ethers.getContractFactory("Funding");
   const funding = await Funding.deploy(roleStore.address, dataStore.address);
   await funding.deployed();
+  await sleep(5000);
   console.log(`Funding deployed to ${funding.address}.`);
 
   // Orders
   const Orders = await ethers.getContractFactory("Orders");
   const orders = await Orders.deploy(roleStore.address, dataStore.address);
   await orders.deployed();
+  await sleep(5000);
   console.log(`Orders deployed to ${orders.address}.`);
 
   // Pool
   const Pool = await ethers.getContractFactory("Pool");
   const pool = await Pool.deploy(roleStore.address, dataStore.address);
   await pool.deployed();
+  await sleep(5000);
   console.log(`Pool deployed to ${pool.address}.`);
 
   // Positions
   const Positions = await ethers.getContractFactory("Positions");
   const positions = await Positions.deploy(roleStore.address, dataStore.address);
   await positions.deployed();
+  await sleep(5000);
   console.log(`Positions deployed to ${positions.address}.`);
 
   // Processor
   const Processor = await ethers.getContractFactory("Processor");
   const processor = await Processor.deploy(roleStore.address, dataStore.address);
   await processor.deployed();
+  await sleep(5000);
   console.log(`Processor deployed to ${processor.address}.`);
 
   // Staking
   const Staking = await ethers.getContractFactory("Staking");
   const staking = await Staking.deploy(roleStore.address, dataStore.address);
   await staking.deployed();
+  await sleep(5000);
   console.log(`Staking deployed to ${staking.address}.`);
 
   // CONTRACT SETUP //

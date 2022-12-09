@@ -1,4 +1,4 @@
-// Chainlink feeds
+// Chainlink feeds for ftm testnet
 exports.chainlinkFeeds = {
   ETH: '0xB8C458C957a6e6ca7Cc53eD95bEA548c52AFaA24',
   USDC: '0x9BB8A6dcD83E36726Cc230a97F1AF8a84ae5F128',
